@@ -7,7 +7,7 @@ import { createUser, getUser } from '@/lib/db/queries';
 import { signIn } from './auth';
 
 const authFormSchema = z.object({
-  email: z.string().email(),
+  email: z.string(),
   password: z.string().min(6),
 });
 
@@ -24,7 +24,6 @@ export const login = async (
       email: formData.get('email'),
       password: formData.get('password'),
     });
-
     await signIn('credentials', {
       email: validatedData.email,
       password: validatedData.password,
