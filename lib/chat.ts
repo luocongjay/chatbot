@@ -109,10 +109,12 @@ export default function handleChat(
         sentAt,
       });
     }
-    setChatHistory([..._chatHistory]);
     if (close) {
       setLoadingResponse(false);
     }
+    setTimeout(() => {
+      setChatHistory([..._chatHistory]);
+    });
   }
 }
 
