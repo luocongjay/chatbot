@@ -1,22 +1,24 @@
-import type { Metadata } from 'next';
-import { Toaster } from 'sonner';
+import type { Metadata } from "next";
+import { Toaster } from "sonner";
 
-import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeProvider } from "@/components/theme-provider";
 
-import './globals.css';
+import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://chat.vercel.ai'),
-  title: 'Next.js Chatbot Template',
-  description: 'Next.js chatbot template using the AI SDK.',
+  metadataBase: new URL("https://alltick.co/en-US"),
+  title:
+    "Real-time Tick Data for Forex, US &amp; HK Stocks, and Crypto CFD Data API - High Frequency Financial Data API - AllTick",
+  description:
+    "AllTick provides a comprehensive solution for financial tick-by-tick data, covering high-frequency data APIs for Forex, Hong Kong stock CFDs, US stock CFDs, commodity futures, and cryptocurrencies. Our API is specially designed for exchanges, developers, quantitative teams, fintech companies, and professional institutions. Our real-time data is pushed via WebSocket, with ultra-low latency, averaging only about 170 milliseconds. Subscribe to our services, and you can receive real-time updates on the latest stock data, forex data, commodity futures data, and cryptocurrency data.",
 };
 
 export const viewport = {
   maximumScale: 1, // Disable auto-zoom on mobile Safari
 };
 
-const LIGHT_THEME_COLOR = 'hsl(0 0% 100%)';
-const DARK_THEME_COLOR = 'hsl(240deg 10% 3.92%)';
+const LIGHT_THEME_COLOR = "hsl(0 0% 100%)";
+const DARK_THEME_COLOR = "hsl(240deg 10% 3.92%)";
 const THEME_COLOR_SCRIPT = `\
 (function() {
   var html = document.documentElement;
