@@ -77,7 +77,12 @@ export function Chat({
       const remHistory = messages.length > 0 ? [...messages] : [];
       var _chatHistory = [...remHistory];
 
-      if (!promptMessage || promptMessage?.closed === true) {
+      if (
+        !promptMessage ||
+        promptMessage?.closed === true ||
+        isLoading == false
+      ) {
+        console.log("stop");
         setLoading(false);
         return false;
       }
