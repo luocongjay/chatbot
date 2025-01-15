@@ -66,7 +66,6 @@ export function Chat({
       ];
       setMessages(latestMessage);
       setLoading(true);
-      return "";
     },
     [messages]
   );
@@ -78,7 +77,7 @@ export function Chat({
       const remHistory = messages.length > 0 ? [...messages] : [];
       var _chatHistory = [...remHistory];
 
-      if (!promptMessage) {
+      if (!promptMessage || promptMessage?.closed === true) {
         setLoading(false);
         return false;
       }
