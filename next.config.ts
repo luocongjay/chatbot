@@ -4,6 +4,14 @@ const nextConfig: NextConfig = {
   experimental: {
     ppr: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/api/:slug*',
+        destination: `${process.env.NEXT_PUBLIC_API}/api/:slug*`,
+      },
+    ]
+  },
   images: {
     remotePatterns: [
       {
