@@ -76,11 +76,12 @@ export function Chat({
         messages.length > 0 ? messages[messages.length - 1] : null;
       const remHistory = messages.length > 0 ? [...messages] : [];
       var _chatHistory = [...remHistory];
-
+      console.log("promptMessage", promptMessage);
       if (
         !promptMessage ||
         promptMessage?.closed === true ||
-        isLoading == false
+        isLoading == false ||
+        promptMessage?.role === "assistant"
       ) {
         console.log("stop");
         setLoading(false);
