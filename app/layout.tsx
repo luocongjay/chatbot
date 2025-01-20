@@ -6,11 +6,11 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://alltick.co/en-US"),
+  metadataBase: new URL("https://alltick.co/"),
   title:
-    "Real-time Tick Data for Forex, US &amp; HK Stocks, and Crypto CFD Data API - High Frequency Financial Data API - AllTick",
+    "实时行情Tick数据 - 外汇、美股、港股、加密货币CFD数据API - 金融高频数据接口 - AllTick",
   description:
-    "AllTick provides a comprehensive solution for financial tick-by-tick data, covering high-frequency data APIs for Forex, Hong Kong stock CFDs, US stock CFDs, commodity futures, and cryptocurrencies. Our API is specially designed for exchanges, developers, quantitative teams, fintech companies, and professional institutions. Our real-time data is pushed via WebSocket, with ultra-low latency, averaging only about 170 milliseconds. Subscribe to our services, and you can receive real-time updates on the latest stock data, forex data, commodity futures data, and cryptocurrency data.",
+    "AllTick提供完整的金融市场Tick数据解决方案，涵盖外汇、港股CFD、美股CFD、商品期货和加密货币等领域的高频数据接口。专为交易所、开发者、量化团队、金融科技公司和专业机构设计。我们的实时行情数据通过WebSocket推送，具有超低延迟，平均仅约 170 毫秒。订阅我们的服务，你可以实时获取最新的股票数据、外汇数据、商品期货数据、加密货币数据。",
 };
 
 export const viewport = {

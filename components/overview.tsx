@@ -15,7 +15,7 @@ export const Overview = () => {
       transition={{ delay: 0.5 }}
     >
       <div className="rounded-xl p-6 flex flex-col gap-8 leading-relaxed text-center max-w-xl">
-        <p className="flex flex-row justify-center gap-4 items-center">
+        {/* <p className="flex flex-row justify-center gap-4 items-center">
           <Link
             className="font-medium underline underline-offset-4"
             href="https://alltick.co/en-US"
@@ -23,14 +23,8 @@ export const Overview = () => {
           >
             <Image alt="logo" src="/images/logo.png" width={128} height={75} />
           </Link>
-        </p>
-        <p>
-          AllTick provides comprehensive financial market Tick data solutions,
-          covering areas such as Forex, Hong Kong Stock CFDs, US Stock CFDs,
-          commodities, and cryptocurrencies market data interfaces. It is
-          designed for exchanges, developers, quantitative teams, fintech
-          companies, and professional institutions.
-        </p>
+        </p> */}
+        <p>您好！我是Alltick的智能客服，你可以向我询问有关API的问题。</p>
       </div>
     </motion.div>
   );
