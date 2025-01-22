@@ -1,5 +1,5 @@
 {
-  "send_message": "發送消息...",
+  "sendMessage": "發送消息...",
   "wait": "請等待模型完成回應！",
   "thinking": "思考中...",
   "copy": "複製",

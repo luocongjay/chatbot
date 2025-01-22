@@ -1,5 +1,5 @@
 {
-  "send_message": "Send a message...",
+  "sendMessage": "Send a message...",
   "wait": "Please wait for the model to finish its response!",
   "thinking": "Thinking...",
   "copy": "Copy",

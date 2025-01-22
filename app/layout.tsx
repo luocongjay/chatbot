@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
 import I18Provider from "@/lib/i18n";
-import { ThemeProvider } from "@/components/theme-provider";
+import { SessionIdProvider } from "@/hooks/use-sessionId";
 
 import "./globals.css";
 
@@ -43,8 +43,10 @@ export default async function RootLayout({
     <html lang="en">
       <body className="antialiased">
         <I18Provider>
-          <Toaster position="top-center" />
-          {children}
+          <SessionIdProvider>
+            <Toaster position="top-center" />
+            {children}
+          </SessionIdProvider>
         </I18Provider>
       </body>
     </html>

@@ -16,6 +16,7 @@ import { useSessionId } from "@/hooks/use-sessionId";
 import ChatService from "@/services/chat";
 import handleChat from "@/lib/chat";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 export function Chat({
   id,
@@ -25,35 +26,38 @@ export function Chat({
   initialMessages: Array<Message>;
   isReadonly: boolean;
 }) {
-  const sessionId = useSessionId({ embedId: id });
+  const sessionId = useSessionId();
   const router = useRouter();
 
   const [messages, setMessages] = useState<any>([]);
   const [input, setInput] = useState("");
   const [isLoading, setLoading] = useState(false);
+  const { i18n } = useTranslation();
 
-  useEffect(() => {
-    async function fetchChatHistory() {
-      if (!sessionId || !id) return;
-      try {
-        const formattedMessages = await ChatService.embedSessionHistory(
-          id,
-          sessionId
-        );
-        setMessages(
-          formattedMessages.map((item: any) => {
-            return { ...item, id: v4() };
-          })
-        );
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching historical chats:", error);
-        setLoading(false);
-      }
-    }
-    setLoading(true);
-    fetchChatHistory();
-  }, [sessionId, id]);
+  console.log("i18n", i18n);
+
+  // useEffect(() => {
+  //   async function fetchChatHistory() {
+  //     if (!sessionId || !id) return;
+  //     try {
+  //       const formattedMessages = await ChatService.embedSessionHistory(
+  //         id,
+  //         sessionId
+  //       );
+  //       setMessages(
+  //         formattedMessages.map((item: any) => {
+  //           return { ...item, id: v4() };
+  //         })
+  //       );
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error("Error fetching historical chats:", error);
+  //       setLoading(false);
+  //     }
+  //   }
+  //   setLoading(true);
+  //   fetchChatHistory();
+  // }, [sessionId, id]);
 
   const append = useCallback(
     (message: any) => {
@@ -69,6 +73,19 @@ export function Chat({
     },
     [messages]
   );
+
+  useEffect(() => {
+    if (i18n.language) {
+      setMessages([
+        {
+          role: "user",
+          content: `我现在的语言代号是${i18n.language}, 请用同样的语言欢迎我访问本客服系统`,
+          id: v4(),
+        },
+      ]);
+      setLoading(true);
+    }
+  }, [setMessages, setLoading, i18n.language]);
 
   useEffect(() => {
     async function fetchReply() {

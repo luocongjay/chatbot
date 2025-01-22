@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import React, { memo, useMemo, useState } from 'react';
-import ReactMarkdown, { type Components } from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { CodeBlock } from './code-block';
+import Link from "next/link";
+import React, { memo, useMemo, useState } from "react";
+import ReactMarkdown, { type Components } from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { CodeBlock } from "./code-block";
 
 const components: Partial<Components> = {
   // @ts-expect-error
@@ -40,7 +40,7 @@ const components: Partial<Components> = {
     return (
       // @ts-expect-error
       <Link
-        className="text-blue-500 hover:underline"
+        className="text-blue-500 hover:underline break-words [overflow-wrap:anywhere]"
         target="_blank"
         rel="noreferrer"
         {...props}
@@ -105,5 +105,5 @@ const NonMemoizedMarkdown = ({ children }: { children: string }) => {
 
 export const Markdown = memo(
   NonMemoizedMarkdown,
-  (prevProps, nextProps) => prevProps.children === nextProps.children,
+  (prevProps, nextProps) => prevProps.children === nextProps.children
 );

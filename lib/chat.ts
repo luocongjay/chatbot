@@ -6,7 +6,7 @@ export default function handleChat(
   remHistory: any,
   _chatHistory: any
 ) {
-  // console.log('chatResult', chatResult, arguments)
+  // console.log("chatResult", chatResult, arguments);
   const {
     uuid,
     textResponse,

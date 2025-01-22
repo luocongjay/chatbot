@@ -1,45 +1,45 @@
 (function () {
-    const Util = {
-      parseJSON(str, defaultVal = null) {
-        try {
-          return JSON.parse(str) || defaultVal;
-        } catch (e) {
-          return defaultVal;
-        }
-      },
-      ready(callback) {
-        if (document.readyState !== "loading") {
-          callback();
-        } else {
-          document.addEventListener("DOMContentLoaded", callback);
-        }
-      },
-      getScriptParams(name){
-        const url = new URL(document.currentScript.getAttribute('src'))
-        return url 
+  const Util = {
+    parseJSON(str, defaultVal = null) {
+      try {
+        return JSON.parse(str) || defaultVal;
+      } catch (e) {
+        return defaultVal;
       }
-    };
-  
-    const currentParams = Util.getScriptParams()
-  
-    const APP = {
-      root: document.createElement("div"),
-      init() {
-        this.initPasstoAI();
-        this.setupMessageListener();
-      },
-      initPasstoAI() {
-        const PasstoAI = document.createElement("div");
-        this.root.id = "PasstoAI";
-        this.initStyle(PasstoAI);
-        PasstoAI.appendChild(this.root);
-        document.body.appendChild(PasstoAI);
-        this.initChat(this.root);
-      },
-      initStyle(root) {
-        const style = document.createElement("style");
-        style.type = "text/css";
-        style.innerText = `
+    },
+    ready(callback) {
+      if (document.readyState !== "loading") {
+        callback();
+      } else {
+        document.addEventListener("DOMContentLoaded", callback);
+      }
+    },
+    getScriptParams(name) {
+      const url = new URL(document.currentScript.getAttribute("src"));
+      return url;
+    },
+  };
+
+  const currentParams = Util.getScriptParams();
+
+  const APP = {
+    root: document.createElement("div"),
+    init() {
+      this.initPasstoAI();
+      this.setupMessageListener();
+    },
+    initPasstoAI() {
+      const PasstoAI = document.createElement("div");
+      this.root.id = "PasstoAI";
+      this.initStyle(PasstoAI);
+      PasstoAI.appendChild(this.root);
+      document.body.appendChild(PasstoAI);
+      this.initChat(this.root);
+    },
+    initStyle(root) {
+      const style = document.createElement("style");
+      style.type = "text/css";
+      style.innerText = `
         #PasstoAI .PasstoAI-enlarge {
             width: 50%!important;
             height: 100%!important;
@@ -199,11 +199,11 @@
                         height: 600px;
                       }
         }`;
-        root.appendChild(style);
-      },
-      initChat(root) {
-        // 添加对话icon
-        const chatButtonHtml = `<div class="PasstoAI-chat-button" ><svg style="vertical-align: middle;overflow: hidden;" width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      root.appendChild(style);
+    },
+    initChat(root) {
+      // 添加对话icon
+      const chatButtonHtml = `<div class="PasstoAI-chat-button" ><svg style="vertical-align: middle;overflow: hidden;" width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g filter="url(#filter0_d_349_49711)">
         <path d="M8 24C8 12.9543 16.9543 4 28 4H48V44H28C16.9543 44 8 35.0457 8 24Z" fill="url(#paint0_linear_349_49711)"/>
         </g>
@@ -226,129 +226,127 @@
         </defs>
         </svg>
         </div>`;
-        const getChatContainerHtml = () => {
-          const { protocol, host } = currentParams
-          const token = currentParams.get('token')  
-          return `<div id="PasstoAI-chat-container">
-          <iframe id="PasstoAI-chat" name="passtoAI-chat" src=${protocol}://${host}/chat/${token}></iframe>
+      const getChatContainerHtml = () => {
+        const { origin } = currentParams;
+        const token = currentParams.searchParams.get("token");
+        return `<div id="PasstoAI-chat-container">
+          <iframe id="PasstoAI-chat" name="passtoAI-chat" src=${origin}/chat/${token}></iframe>
           </div>
           `;
-        };
-        root.insertAdjacentHTML("beforeend", chatButtonHtml);
-        // 添加对话框
-        root.insertAdjacentHTML('beforeend',getChatContainerHtml());
-        // 按钮元素
-        const chat_button = root.querySelector(".PasstoAI-chat-button");
-        chat_button.onclick = () => {
-          this.toggle();
-        };
-      },
-      toggle() {
-        const chat_container = this.root.querySelector(
-          "#PasstoAI-chat-container"
+      };
+      root.insertAdjacentHTML("beforeend", chatButtonHtml);
+      // 添加对话框
+      root.insertAdjacentHTML("beforeend", getChatContainerHtml());
+      // 按钮元素
+      const chat_button = root.querySelector(".PasstoAI-chat-button");
+      chat_button.onclick = () => {
+        this.toggle();
+      };
+    },
+    toggle() {
+      const chat_container = this.root.querySelector(
+        "#PasstoAI-chat-container"
+      );
+      chat_container.style["display"] =
+        chat_container.style["display"] == "block" ? "none" : "block";
+    },
+    viewport() {
+      const chat_container = this.root.querySelector(
+        "#PasstoAI-chat-container"
+      );
+      if (chat_container.classList.contains("PasstoAI-enlarge")) {
+        chat_container.classList.remove("PasstoAI-enlarge");
+      } else {
+        chat_container.classList.add("PasstoAI-enlarge");
+      }
+    },
+    show() {
+      const chat_container = this.root.querySelector(
+        "#PasstoAI-chat-container"
+      );
+      chat_container.style["display"] = "block";
+    },
+    hide() {
+      const chat_container = this.root.querySelector(
+        "#PasstoAI-chat-container"
+      );
+      chat_container.style["display"] = "none";
+    },
+    setLanguage(val) {
+      this.postMessage("setLanguage", val);
+    },
+    setToken(val) {
+      this.postMessage("setToken", val);
+    },
+    setupMessageListener() {
+      window.addEventListener("message", this.listenMessage.bind(this));
+    },
+    removeMessageListener() {
+      window.removeEventListener("message", this.listenMessage.bind(this));
+    },
+    postMessage(type, data) {
+      document
+        .getElementById("PasstoAI-chat")
+        .contentWindow.postMessage(
+          JSON.stringify({ type: "passtoai-" + type, data }),
+          "*"
         );
-        chat_container.style["display"] =
-          chat_container.style["display"] == "block" ? "none" : "block";
-      },
-      viewport(){
-        const chat_container = this.root.querySelector(
-          "#PasstoAI-chat-container"
-        );
-        if (chat_container.classList.contains('PasstoAI-enlarge')) {
-          chat_container.classList.remove('PasstoAI-enlarge')
-        } else {
-          chat_container.classList.add('PasstoAI-enlarge')
+    },
+    listenMessage(evt) {
+      const e = Util.parseJSON(evt.data, { type: "" });
+      // 初始化内容
+      if (e.type === "passtoai-init") {
+        if (window.PassToAI?.q?.length) {
+          window.PassToAI?.q.forEach((element) => {
+            const a = [...element];
+            if (a[0] && a[0] !== "setLanguage" && APP[a[0]]) {
+              APP[a[0]](...a.slice(1));
+            }
+          });
         }
-      },
-      show() {
-        const chat_container = this.root.querySelector(
-          "#PasstoAI-chat-container"
-        );
-        chat_container.style["display"] = "block";
-      },
-      hide() {
-        const chat_container = this.root.querySelector(
-          "#PasstoAI-chat-container"
-        );
-        chat_container.style["display"] = "none";
-      },
-      setLanguage(val) {
-        this.postMessage("setLanguage", val);
-      },
-      setToken(val){
-        this.postMessage('setToken', val)
-      },
-      setupMessageListener() {
-        window.addEventListener("message", this.listenMessage.bind(this));
-      },
-      removeMessageListener() {
-        window.removeEventListener("message", this.listenMessage.bind(this));
-      },
-      postMessage(type, data) {
-        document
-          .getElementById("PasstoAI-chat")
-          .contentWindow.postMessage(
-            JSON.stringify({ type: "passtoai-" + type, data }),
-            "*"
-          );
-      },
-      listenMessage(evt) {
-        const e = Util.parseJSON(evt.data, { type: "" });
-        // 初始化内容
-        if (e.type === "passtoai-init") {
-          if (window.PassToAI?.q?.length) {
-            window.PassToAI?.q.forEach((element) => {
-              const a = [...element];
-              if (a[0] && a[0] !== "setLanguage" && APP[a[0]]) {
-                APP[a[0]](...a.slice(1));
-              }
-            });
-          }
-          this.init_passtoai();
-        }else if(e.type === 'passtoai-getData'){
-         this.postMessage('getData', window.PassToAI?.q || null)
-        }else if(e.type === 'passtoai-operates'){
-          if(e?.data === 'close'){
-            this.hide()
-          }else if(e?.data === 'enlarge'){
-            this.viewport()
-          }else if(e?.data === 'mini'){
-            this.viewport()
-          }
+        this.init_passtoai();
+      } else if (e.type === "passtoai-getData") {
+        this.postMessage("getData", window.PassToAI?.q || null);
+      } else if (e.type === "passtoai-operates") {
+        if (e?.data === "close") {
+          this.hide();
+        } else if (e?.data === "enlarge") {
+          this.viewport();
+        } else if (e?.data === "mini") {
+          this.viewport();
         }
-      },
-      init_passtoai() {
-        const passtoai_init = function (self) {
-          return (...t) => {
-            const s = {
-              config: {
-                lang: "",
-              },
-              show() {
-                self.show();
-              },
-              hide() {
-                self.hide();
-              },
-              setLanguage(v) {
-                self.setLanguage(v);
-              },
-              setToken(v){
-                self.setToken(v);
-              }
-            };
-            const r = t[0];
-            if (!r || !s[r]) return;
-            s[r](...t.slice(1));
+      }
+    },
+    init_passtoai() {
+      const passtoai_init = function (self) {
+        return (...t) => {
+          const s = {
+            config: {
+              lang: "",
+            },
+            show() {
+              self.show();
+            },
+            hide() {
+              self.hide();
+            },
+            setLanguage(v) {
+              self.setLanguage(v);
+            },
+            setToken(v) {
+              self.setToken(v);
+            },
           };
+          const r = t[0];
+          if (!r || !s[r]) return;
+          s[r](...t.slice(1));
         };
-        window.PassToAI = passtoai_init(this);
-      },
-    };
-  
-    Util.ready(() => {
-       APP.init();
-    });
-    
-  })();
-  
+      };
+      window.PassToAI = passtoai_init(this);
+    },
+  };
+
+  Util.ready(() => {
+    APP.init();
+  });
+})();

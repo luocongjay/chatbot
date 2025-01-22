@@ -2,8 +2,6 @@ import { fetchEventSource } from "@microsoft/fetch-event-source";
 import { generateUUID as v4 } from "@/lib/utils";
 import I18n from "@/lib/i18n/i18n";
 
-console.log("I18n", I18n);
-
 let ctrl: AbortController;
 
 const ChatService = {

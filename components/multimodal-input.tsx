@@ -70,7 +70,7 @@ function PureMultimodalInput({
 }) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { width } = useWindowSize();
-  const sessionId = useSessionId({ embedId: chatId });
+  const sessionId = useSessionId();
   const router = useRouter();
   const { t } = useTranslation();
 
@@ -240,7 +240,7 @@ function PureMultimodalInput({
 
       <Textarea
         ref={textareaRef}
-        placeholder={t("send_message")}
+        placeholder={t("sendMessage")}
         value={input}
         onChange={handleInput}
         className={cx(
