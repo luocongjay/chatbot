@@ -1,0 +1,17 @@
+{
+  "send_message": "Send a message...",
+  "wait": "Please wait for the model to finish its response!",
+  "thinking": "Thinking...",
+  "copy": "Copy",
+  "copySucc": "Copied to clipboard!",
+  "editMessage": "Edit message",
+  "send": "Send",
+  "cancel": "Cancel",
+  "sending": "Sending...",
+  "somethingWrong": "Something went wrong, please try again!",
+  "invalidResponse": "Invalid response from server",
+  "error": "An error occurred while streaming response. Code <0></0>",
+  "unknown": "Unknown Error",
+  "errorUnknow": "An error occurred while streaming response. Unknown Error.",
+  "errorMsg": "An error occurred while streaming response. <0></0>"
+}

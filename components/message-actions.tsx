@@ -16,6 +16,7 @@ import {
 } from "./ui/tooltip";
 import { memo } from "react";
 import equal from "fast-deep-equal";
+import { useTranslation } from "react-i18next";
 
 export function PureMessageActions({
   chatId,
@@ -30,6 +31,7 @@ export function PureMessageActions({
 }) {
   const { mutate } = useSWRConfig();
   const [_, copyToClipboard] = useCopyToClipboard();
+  const { t } = useTranslation();
 
   if (isLoading) return null;
   if (message.role === "user") return null;
@@ -46,13 +48,13 @@ export function PureMessageActions({
               variant="outline"
               onClick={async () => {
                 await copyToClipboard(message.content as string);
-                toast.success("Copied to clipboard!");
+                toast.success(t("copySucc"));
               }}
             >
               <CopyIcon />
             </Button>
           </TooltipTrigger>
-          <TooltipContent>Copy</TooltipContent>
+          <TooltipContent>{t("copy")}</TooltipContent>
         </Tooltip>
 
         {/* <Tooltip>

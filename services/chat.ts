@@ -1,5 +1,8 @@
 import { fetchEventSource } from "@microsoft/fetch-event-source";
 import { generateUUID as v4 } from "@/lib/utils";
+import I18n from "@/lib/i18n/i18n";
+
+console.log("I18n", I18n);
 
 let ctrl: AbortController;
 
@@ -8,7 +11,7 @@ const ChatService = {
     return await fetch(`/api/embed/${embedId}/${sessionId}`)
       .then((res) => {
         if (res.ok) return res.json();
-        throw new Error("Invalid response from server");
+        throw new Error(I18n.t("invalidResponse"));
       })
       .then((res) => {
         return res.history.map((msg: any) => ({
@@ -70,7 +73,7 @@ const ChatService = {
                 textResponse: null,
                 sources: [],
                 close: true,
-                error: `An error occurred while streaming response. Code ${response.status}`,
+                error: I18n.t("error", [response.status]),
               });
             });
           ctrl.abort();
@@ -82,10 +85,10 @@ const ChatService = {
             textResponse: null,
             sources: [],
             close: true,
-            error: `An error occurred while streaming response. Unknown Error.`,
+            error: I18n.t("errorUnknow"),
           });
           ctrl.abort();
-          throw new Error("Unknown Error");
+          throw new Error(I18n.t("unknown"));
         }
       },
       async onmessage(msg) {
@@ -101,7 +104,7 @@ const ChatService = {
           textResponse: null,
           sources: [],
           close: true,
-          error: `An error occurred while streaming response. ${err.message}`,
+          error: I18n.t("errorMsg", [err.message]),
         });
         ctrl.abort();
         throw new Error();

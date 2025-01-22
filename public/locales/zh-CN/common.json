@@ -1,0 +1,17 @@
+{
+  "send_message": "发送消息...",
+  "wait": "等待中...",
+  "thinking": "思考中...",
+  "copy": "复制",
+  "copySucc": "复制成功!",
+  "editMessage": "编辑消息",
+  "send": "发送",
+  "cancel": "取消",
+  "sending": "发送中...",
+  "somethingWrong": "出现问题，请重试！",
+  "invalidResponse": "服务器返回无效响应",
+  "error": "发生错误。代码 <0></0>",
+  "unknown": "未知错误",
+  "errorUnknow": "发生错误。未知错误。",
+  "errorMsg": "发生错误。<0></0>"
+}

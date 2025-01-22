@@ -31,7 +31,7 @@ import { Textarea } from "./ui/textarea";
 import { SuggestedActions } from "./suggested-actions";
 import equal from "fast-deep-equal";
 import { useSessionId } from "@/hooks/use-sessionId";
-import ChatService from "@/services/chat";
+import { useTranslation } from "react-i18next";
 
 function PureMultimodalInput({
   chatId,
@@ -72,6 +72,7 @@ function PureMultimodalInput({
   const { width } = useWindowSize();
   const sessionId = useSessionId({ embedId: chatId });
   const router = useRouter();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -239,7 +240,7 @@ function PureMultimodalInput({
 
       <Textarea
         ref={textareaRef}
-        placeholder="Send a message..."
+        placeholder={t("send_message")}
         value={input}
         onChange={handleInput}
         className={cx(
@@ -253,7 +254,7 @@ function PureMultimodalInput({
             event.preventDefault();
 
             if (isLoading) {
-              toast.error("Please wait for the model to finish its response!");
+              toast.error(t("wait"));
             } else {
               submitForm();
             }

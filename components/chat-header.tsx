@@ -28,8 +28,11 @@ export function ChatHeader({
   const { width: windowWidth } = useWindowSize();
 
   return (
-    <header className="flex sticky top-0 bg-background py-1.5 items-center px-2 md:px-2 gap-2">
-      {(!open || windowWidth < 768 || 1 === 1) && (
+    <header className="flex sticky top-0 bg-[#35254F] py-1.5 items-center px-2 md:px-2 gap-2  h-[56px]">
+      <div className="w-full mx-auto max-w-3xl px-2 text-white font-bold text-lg">
+        AllTick
+      </div>
+      {/* {(!open || windowWidth < 768 || 1 === 1) && (
         <div className="w-full mx-auto max-w-3xl flex justify-between items-center px-2 md:px-0">
           <Link
             className="font-medium underline underline-offset-4"
@@ -51,7 +54,7 @@ export function ChatHeader({
             <span>New Chat</span>
           </Button>
         </div>
-      )}
+      )} */}
     </header>
   );
 }

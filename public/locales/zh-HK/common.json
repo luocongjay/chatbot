@@ -1,0 +1,17 @@
+{
+  "send_message": "發送消息...",
+  "wait": "請等待模型完成回應！",
+  "thinking": "思考中...",
+  "copy": "複製",
+  "copySucc": "已複製到剪貼板！",
+  "editMessage": "編輯消息",
+  "send": "發送",
+  "cancel": "取消",
+  "sending": "發送中...",
+  "somethingWrong": "出現問題，請重試！",
+  "invalidResponse": "伺服器返回無效響應",
+  "error": "在串流響應時發生錯誤。代碼 <0></0>",
+  "unknown": "未知錯誤",
+  "errorUnknow": "在串流響應時發生錯誤。未知錯誤。",
+  "errorMsg": "在串流響應時發生錯誤。<0></0>"
+}
