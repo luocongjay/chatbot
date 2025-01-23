@@ -10,8 +10,8 @@
   "sending": "Sending...",
   "somethingWrong": "Something went wrong, please try again!",
   "invalidResponse": "Invalid response from server",
-  "error": "An error occurred while streaming response. Code <0></0>",
+  "error": "An error occurred while streaming response. Code {{code}}",
   "unknown": "Unknown Error",
   "errorUnknow": "An error occurred while streaming response. Unknown Error.",
-  "errorMsg": "An error occurred while streaming response. <0></0>"
+  "errorMsg": "An error occurred while streaming response. {{msg}}"
 }

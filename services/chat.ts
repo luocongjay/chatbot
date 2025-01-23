@@ -71,7 +71,7 @@ const ChatService = {
                 textResponse: null,
                 sources: [],
                 close: true,
-                error: I18n.t("error", [response.status]),
+                error: I18n.t("error", { code: response.status }),
               });
             });
           ctrl.abort();
@@ -102,7 +102,7 @@ const ChatService = {
           textResponse: null,
           sources: [],
           close: true,
-          error: I18n.t("errorMsg", [err.message]),
+          error: I18n.t("errorMsg", { msg: err.message }),
         });
         ctrl.abort();
         throw new Error();

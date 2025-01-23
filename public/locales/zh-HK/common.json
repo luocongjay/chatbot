@@ -10,8 +10,8 @@
   "sending": "發送中...",
   "somethingWrong": "出現問題，請重試！",
   "invalidResponse": "伺服器返回無效響應",
-  "error": "在串流響應時發生錯誤。代碼 <0></0>",
+  "error": "在串流響應時發生錯誤。代碼 {{code}}",
   "unknown": "未知錯誤",
   "errorUnknow": "在串流響應時發生錯誤。未知錯誤。",
-  "errorMsg": "在串流響應時發生錯誤。<0></0>"
+  "errorMsg": "在串流響應時發生錯誤。{{msg}}"
 }

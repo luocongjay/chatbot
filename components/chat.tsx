@@ -34,8 +34,6 @@ export function Chat({
   const [isLoading, setLoading] = useState(false);
   const { i18n } = useTranslation();
 
-  console.log("i18n", i18n);
-
   // useEffect(() => {
   //   async function fetchChatHistory() {
   //     if (!sessionId || !id) return;
