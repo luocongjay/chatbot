@@ -22,6 +22,7 @@ import { DocumentPreview } from "./document-preview";
 import { useTranslation } from "react-i18next";
 
 function filterThinkTags(str: string) {
+  if (!str) return "";
   const thinkIndex = str.indexOf("<think>");
   if (thinkIndex !== -1) {
     const endThinkIndex = str.indexOf("</think>");
