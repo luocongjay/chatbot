@@ -43,7 +43,7 @@ export function ChatHeader({
   return (
     <header className="flex sticky top-0 bg-primary py-1.5 items-center px-2 md:px-2 gap-2  h-[56px]">
       <div className="max-w-3xl m-auto flex w-full justify-between">
-        <div className="px-2 text-white font-bold text-lg">AllTick</div>
+        <div className="px-2 text-white font-bold text-lg">PasstoCredit</div>
         {isIframe && (
           <div className="max-w-3xl flex items-center px-2 md:px-0">
             {isEnlarge ? (
