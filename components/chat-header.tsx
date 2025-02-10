@@ -3,11 +3,10 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useWindowSize } from "usehooks-ts";
-
 import { Button } from "@/components/ui/button";
 import { PlusIcon, VercelIcon } from "./icons";
 import { useSidebar } from "./ui/sidebar";
-import { memo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import ChatService from "@/services/chat";
 import { useSessionId } from "@/hooks/use-sessionId";
@@ -40,10 +39,21 @@ export function ChatHeader({
     }
   };
 
+  const title = useMemo(() => {
+    switch (chatId) {
+      case "e2f6348b-d00e-420d-80aa-9ffa97d74e1f":
+        return "AllTick";
+      case "5170654b-9c45-4332-81e9-3fd13b3c6bb1":
+        return "PassTo Credit";
+      default:
+        return "PassTo AI";
+    }
+  }, [chatId]);
+
   return (
     <header className="flex sticky top-0 bg-primary py-1.5 items-center px-2 md:px-2 gap-2  h-[56px]">
       <div className="max-w-3xl m-auto flex w-full justify-between">
-        <div className="px-2 text-white font-bold text-lg">PasstoCredit</div>
+        <div className="px-2 text-white font-bold text-lg">{title}</div>
         {isIframe && (
           <div className="max-w-3xl flex items-center px-2 md:px-0">
             {isEnlarge ? (
