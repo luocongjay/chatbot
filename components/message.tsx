@@ -21,6 +21,22 @@ import { MessageEditor } from "./message-editor";
 import { DocumentPreview } from "./document-preview";
 import { useTranslation } from "react-i18next";
 
+function filterThinkTags(str: string) {
+  const thinkIndex = str.indexOf("<think>");
+  if (thinkIndex !== -1) {
+    const endThinkIndex = str.indexOf("</think>");
+    if (endThinkIndex !== -1) {
+      // 存在完整的 <think> 和 </think> 标签对，清除标签及其内容
+      return str.replace(/<think>.*?<\/think>/gs, "");
+    } else {
+      // 存在 <think> 但没有 </think>，将 <think> 及其后面的内容置为空
+      return str.slice(0, thinkIndex);
+    }
+  }
+  // 没有 <think> 标签，返回原始字符串
+  return str;
+}
+
 const PurePreviewMessage = ({
   chatId,
   message,
@@ -44,6 +60,8 @@ const PurePreviewMessage = ({
 }) => {
   const { t } = useTranslation();
   const [mode, setMode] = useState<"view" | "edit">("view");
+
+  const messageContent = filterThinkTags(message.content);
 
   return (
     <AnimatePresence>
@@ -82,7 +100,7 @@ const PurePreviewMessage = ({
               </div>
             )}
 
-            {message.content && mode === "view" && (
+            {messageContent && mode === "view" && (
               <div className="flex flex-row gap-2 items-start">
                 {message.role === "user" && !isReadonly && (
                   <Tooltip>
@@ -107,12 +125,12 @@ const PurePreviewMessage = ({
                       message.role === "user",
                   })}
                 >
-                  <Markdown>{message.content as string}</Markdown>
+                  <Markdown>{messageContent as string}</Markdown>
                 </div>
               </div>
             )}
 
-            {message.content && mode === "edit" && (
+            {messageContent && mode === "edit" && (
               <div className="flex flex-row gap-2 items-start">
                 <div className="size-8" />
 
