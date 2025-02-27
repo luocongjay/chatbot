@@ -14,29 +14,12 @@ import { MessageActions } from "./message-actions";
 import { PreviewAttachment } from "./preview-attachment";
 import { Weather } from "./weather";
 import equal from "fast-deep-equal";
-import { cn } from "@/lib/utils";
+import { cn, filterThinkTags } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { MessageEditor } from "./message-editor";
 import { DocumentPreview } from "./document-preview";
 import { useTranslation } from "react-i18next";
-
-function filterThinkTags(str: string) {
-  if (!str) return "";
-  const thinkIndex = str.indexOf("<think>");
-  if (thinkIndex !== -1) {
-    const endThinkIndex = str.indexOf("</think>");
-    if (endThinkIndex !== -1) {
-      // 存在完整的 <think> 和 </think> 标签对，清除标签及其内容
-      return str.replace(/<think>.*?<\/think>/gs, "");
-    } else {
-      // 存在 <think> 但没有 </think>，将 <think> 及其后面的内容置为空
-      return str.slice(0, thinkIndex);
-    }
-  }
-  // 没有 <think> 标签，返回原始字符串
-  return str;
-}
 
 const PurePreviewMessage = ({
   chatId,

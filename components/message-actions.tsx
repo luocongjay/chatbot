@@ -4,7 +4,7 @@ import { useSWRConfig } from "swr";
 import { useCopyToClipboard } from "usehooks-ts";
 
 import type { Vote } from "@/lib/db/schema";
-import { getMessageIdFromAnnotations } from "@/lib/utils";
+import { getMessageIdFromAnnotations, filterThinkTags } from "@/lib/utils";
 
 import { CopyIcon, ThumbDownIcon, ThumbUpIcon } from "./icons";
 import { Button } from "./ui/button";
@@ -47,7 +47,9 @@ export function PureMessageActions({
               className="py-1 px-2 h-fit text-muted-foreground"
               variant="outline"
               onClick={async () => {
-                await copyToClipboard(message.content as string);
+                await copyToClipboard(
+                  filterThinkTags(message.content as string).trim()
+                );
                 toast.success(t("copySucc"));
               }}
             >
