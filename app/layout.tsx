@@ -5,12 +5,7 @@ import { SessionIdProvider } from "@/hooks/use-sessionId";
 
 import "./globals.css";
 
-export const metadata: Metadata = {
-  // metadataBase: new URL("https://alltick.co/"),
-  title: "PassTo AI",
-};
-
-export const viewport = {
+const viewport = {
   maximumScale: 1, // Disable auto-zoom on mobile Safari
 };
 
@@ -33,6 +28,14 @@ const THEME_COLOR_SCRIPT = `\
   observer.observe(html, { attributes: true, attributeFilter: ['class'] });
   updateThemeColor();
 })();`;
+
+export const metadata = {
+  title: "PassTo AI",
+  // metadataBase: new URL("https://alltick.co/"),
+  other: {
+    "permissions-policy": "clipboard-write=*",
+  },
+};
 
 export default async function RootLayout({
   children,
