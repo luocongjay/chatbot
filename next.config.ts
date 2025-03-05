@@ -1,21 +1,22 @@
-import type { NextConfig } from 'next';
+import type { NextConfig } from "next";
+
+const rewrites = async () => [
+  {
+    source: "/api/:slug*",
+    destination: `${process.env.NEXT_PUBLIC_API}/api/:slug*`,
+  },
+];
 
 const nextConfig: NextConfig = {
   experimental: {
-    ppr: true,
+    // ppr: true,
   },
-  async rewrites() {
-    return [
-      {
-        source: '/api/:slug*',
-        destination: `${process.env.NEXT_PUBLIC_API}/api/:slug*`,
-      },
-    ]
-  },
+  output: process.env.NODE_ENV === "development" ? undefined : "export",
+  rewrites,
   images: {
     remotePatterns: [
       {
-        hostname: 'avatar.vercel.sh',
+        hostname: "avatar.vercel.sh",
       },
     ],
   },

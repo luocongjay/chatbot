@@ -1,8 +1,6 @@
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
-import Script from "next/script";
-
-export const experimental_ppr = true;
+// export const experimental_ppr = true;
 
 export default async function Layout({
   children,

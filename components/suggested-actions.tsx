@@ -44,7 +44,7 @@ function PureSuggestedActions({ chatId, append }: SuggestedActionsProps) {
             variant="ghost"
             onClick={async (e) => {
               e.preventDefault();
-              window.history.replaceState({}, "", `/chat/${chatId}`);
+              window.history.replaceState({}, "", `/chat?id=${chatId}`);
               append({
                 role: "user",
                 content: suggestedAction.title,

@@ -15,19 +15,17 @@ import { useBlockSelector } from "@/hooks/use-block";
 import { useSessionId } from "@/hooks/use-sessionId";
 import ChatService from "@/services/chat";
 import handleChat from "@/lib/chat";
-import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 
 export function Chat({
-  id,
   isReadonly,
+  id,
 }: {
-  id: string;
   initialMessages: Array<Message>;
   isReadonly: boolean;
+  id: string;
 }) {
   const sessionId = useSessionId();
-  const router = useRouter();
 
   const [messages, setMessages] = useState<any>([]);
   const [input, setInput] = useState("");
