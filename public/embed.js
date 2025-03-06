@@ -230,7 +230,7 @@
         const { origin } = currentParams;
         const token = currentParams.searchParams.get("token");
         return `<div id="PasstoAI-chat-container">
-          <iframe id="PasstoAI-chat" name="passtoAI-chat" src=${origin}/chat?id=${token}></iframe>
+          <iframe id="PasstoAI-chat" name="passtoAI-chat" allow="clipboard-write" src=${origin}/chat?id=${token}></iframe>
           </div>
           `;
       };
