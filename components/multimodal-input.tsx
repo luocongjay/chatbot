@@ -24,7 +24,7 @@ import { useLocalStorage, useWindowSize } from "usehooks-ts";
 import { sanitizeUIMessages } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
-import { ArrowUpIcon, PaperclipIcon, StopIcon, PlusIcon } from "./icons";
+import { ArrowUpIcon, PaperclipIcon, StopIcon, ServiceIcon } from "./icons";
 import { PreviewAttachment } from "./preview-attachment";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
@@ -202,7 +202,18 @@ function PureMultimodalInput({
   );
 
   return (
-    <div className="relative w-full flex flex-col gap-4">
+    <div className="relative w-full">
+      <Button
+        className="inline-flex size-auto my-2 text-xs px-2 disabled:opacity-80 disabled:bg-muted"
+        variant={"outline"}
+        disabled={isLoading}
+        onClick={(event) => {
+          event.preventDefault();
+          append({ content: t("onlineService"), role: "user" });
+        }}
+      >
+        <ServiceIcon /> <span>{t("onlineService")}</span>
+      </Button>
       {/* {messages.length === 0 &&
         attachments.length === 0 &&
         uploadQueue.length === 0 && (

@@ -13,5 +13,6 @@
   "error": "在串流響應時發生錯誤。代碼 {{code}}",
   "unknown": "未知錯誤",
   "errorUnknow": "在串流響應時發生錯誤。未知錯誤。",
-  "errorMsg": "在串流響應時發生錯誤。{{msg}}"
+  "errorMsg": "在串流響應時發生錯誤。{{msg}}",
+  "onlineService": "轉人工客服"
 }

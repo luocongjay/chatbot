@@ -13,5 +13,6 @@
   "error": "An error occurred while streaming response. Code {{code}}",
   "unknown": "Unknown Error",
   "errorUnknow": "An error occurred while streaming response. Unknown Error.",
-  "errorMsg": "An error occurred while streaming response. {{msg}}"
+  "errorMsg": "An error occurred while streaming response. {{msg}}",
+  "onlineService": "Human support"
 }

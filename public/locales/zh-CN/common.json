@@ -13,5 +13,6 @@
   "error": "发生错误。代码 {{code}}",
   "unknown": "未知错误",
   "errorUnknow": "发生错误。未知错误。",
-  "errorMsg": "发生错误。{{msg}}"
+  "errorMsg": "发生错误。{{msg}}",
+  "onlineService": "转人工客服"
 }
