@@ -44,6 +44,7 @@ export function ChatHeader({
       case "e2f6348b-d00e-420d-80aa-9ffa97d74e1f":
         return "AllTick";
       case "5170654b-9c45-4332-81e9-3fd13b3c6bb1":
+      case "19a2392d-979f-47a3-83df-2f83e31340e8":
         return "PassTo Credit";
       default:
         return "PassTo AI";
