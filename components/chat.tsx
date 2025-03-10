@@ -16,6 +16,8 @@ import { useSessionId } from "@/hooks/use-sessionId";
 import ChatService from "@/services/chat";
 import handleChat from "@/lib/chat";
 import { useTranslation } from "react-i18next";
+import { getPlatformSuggest } from "@/lib/constants";
+import { useMessage } from "@/hooks/use-message";
 
 export function Chat({
   isReadonly,
@@ -31,6 +33,31 @@ export function Chat({
   const [input, setInput] = useState("");
   const [isLoading, setLoading] = useState(false);
   const { i18n } = useTranslation();
+
+  const handleLanguage = useCallback(
+    async (value: string) => {
+      await i18n.changeLanguage(value);
+    },
+    [i18n]
+  );
+
+  const { postMessage } = useMessage({
+    onSetLanguage: handleLanguage,
+  });
+
+  useEffect(() => {
+    if (window !== window.parent && i18n.language) {
+      // @ts-ignore
+      const { q = [] } = window.parent.PassToAI;
+      q.forEach((element: any) => {
+        const a = [...element];
+        if (a[0] && a[0] === "setLanguage" && a[1]) {
+          handleLanguage(a[1]);
+        }
+      });
+      postMessage("init");
+    }
+  }, [postMessage, i18n, handleLanguage]);
 
   // useEffect(() => {
   //   async function fetchChatHistory() {
@@ -81,7 +108,7 @@ export function Chat({
       setMessages([
         {
           role: "user",
-          content: `请用${lang}回答下面内容, ”${process.env.NEXT_PUBLIC_SUGGEST}“`,
+          content: `请用${lang}回答下面内容, ”${getPlatformSuggest()}“`,
           id: v4(),
         },
       ]);

@@ -91,6 +91,13 @@ const components: Partial<Components> = {
       </h6>
     );
   },
+  p: ({ node, children, ...props }) => {
+    return (
+      <p className="whitespace-pre-line" {...props}>
+        {children}
+      </p>
+    );
+  },
 };
 
 const remarkPlugins = [remarkGfm];

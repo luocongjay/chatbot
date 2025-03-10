@@ -32,9 +32,6 @@ const THEME_COLOR_SCRIPT = `\
 export const metadata = {
   title: "PassTo AI",
   // metadataBase: new URL("https://alltick.co/"),
-  other: {
-    "permissions-policy": "clipboard-write=*",
-  },
 };
 
 export default async function RootLayout({
