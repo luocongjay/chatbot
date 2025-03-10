@@ -42,6 +42,7 @@ export function ChatHeader({
   const title = useMemo(() => {
     switch (chatId) {
       case "e2f6348b-d00e-420d-80aa-9ffa97d74e1f":
+      case "c73367bf-ef7f-4523-b670-6d67ef680a4f":
         return "AllTick";
       case "5170654b-9c45-4332-81e9-3fd13b3c6bb1":
       case "19a2392d-979f-47a3-83df-2f83e31340e8":

@@ -1,13 +1,13 @@
-import Form from 'next/form';
+import Form from "next/form";
 
-import { Input } from './ui/input';
-import { Label } from './ui/label';
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 
 export function AuthForm({
   action,
   children,
-  defaultEmail = 'lucas123138',
-  defaultPwd = 'PasstoAI@123'
+  defaultEmail = "",
+  defaultPwd = "",
 }: {
   action: NonNullable<
     string | ((formData: FormData) => void | Promise<void>) | undefined

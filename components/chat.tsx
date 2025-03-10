@@ -72,10 +72,16 @@ export function Chat({
 
   useEffect(() => {
     if (i18n.language) {
+      let lang = "简体中文";
+      if (i18n.language === "zh-HK") {
+        lang = "繁体中文";
+      } else if (i18n.language === "en-US") {
+        lang = "英语";
+      }
       setMessages([
         {
           role: "user",
-          content: `我现在的语言代号是${i18n.language}, 请用同样的语言欢迎我访问本客服系统`,
+          content: `请用${lang}回答下面内容, ”${process.env.NEXT_PUBLIC_SUGGEST}“`,
           id: v4(),
         },
       ]);
