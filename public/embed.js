@@ -229,8 +229,10 @@
       const getChatContainerHtml = () => {
         const { origin } = currentParams;
         const token = currentParams.searchParams.get("token");
+        const currentLang = currentParams.searchParams.get("lang");
+        const formatLang = currentLang ? `&lang=${currentLang}` : "";
         return `<div id="PasstoAI-chat-container">
-          <iframe id="PasstoAI-chat" name="passtoAI-chat" allow="clipboard-write" src=${origin}/chat?id=${token}></iframe>
+          <iframe id="PasstoAI-chat" name="passtoAI-chat" allow="clipboard-write" src=${origin}/chat?id=${token}${formatLang}></iframe>
           </div>
           `;
       };
