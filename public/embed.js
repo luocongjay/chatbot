@@ -301,7 +301,7 @@
         if (window.PassToAI?.q?.length) {
           window.PassToAI?.q.forEach((element) => {
             const a = [...element];
-            if (a[0] && a[0] !== "setLanguage" && APP[a[0]]) {
+            if (a[0] && APP[a[0]]) {
               APP[a[0]](...a.slice(1));
             }
           });

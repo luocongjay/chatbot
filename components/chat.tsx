@@ -46,18 +46,11 @@ export function Chat({
   });
 
   useEffect(() => {
-    if (window !== window.parent && i18n.language) {
-      // @ts-ignore
-      const { q = [] } = window.parent.PassToAI;
-      q.forEach((element: any) => {
-        const a = [...element];
-        if (a[0] && a[0] === "setLanguage" && a[1]) {
-          handleLanguage(a[1]);
-        }
-      });
+    // 页面初始化的时候执行
+    if (window !== window.parent) {
       postMessage("init");
     }
-  }, [postMessage, i18n, handleLanguage]);
+  }, [postMessage]);
 
   // useEffect(() => {
   //   async function fetchChatHistory() {
