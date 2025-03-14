@@ -176,7 +176,7 @@ export const MessageActions = memo(
   (prevProps, nextProps) => {
     if (!equal(prevProps.vote, nextProps.vote)) return false;
     if (prevProps.isLoading !== nextProps.isLoading) return false;
-
+    if (prevProps.message.content !== nextProps.message.content) return false;
     return true;
   }
 );
